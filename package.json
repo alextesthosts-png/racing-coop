@@ -1,0 +1,14 @@
+{
+  "name": "racing-coop",
+  "version": "1.0.0",
+  "description": "Kart Krew - a co-op browser kart racer",
+  "type": "module",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "express": "^4.21.2",
+    "three": "0.160.0",
+    "ws": "^8.18.0"
+  }
+}

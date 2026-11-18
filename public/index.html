@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏎️</text></svg>" />
+  <title>Kart Krew — Co-op Kart Racing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Nunito:wght@600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <script type="importmap">{ "imports": { "three": "/vendor/three.module.js" } }</script>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <!-- Main menu -->
+  <div id="menu" class="screen panel-wrap">
+    <div class="panel">
+      <h1 class="logo">KART<span>KREW</span></h1>
+      <p class="tag">Team up with friends, race the Rival Crew.</p>
+      <label>Your name<input id="name" maxlength="14" placeholder="Racer" /></label>
+      <label>Kart color</label>
+      <div id="colors" class="colors"></div>
+      <button id="createBtn" class="btn big">Create room</button>
+      <div class="row">
+        <input id="codeIn" maxlength="4" placeholder="CODE" />
+        <button id="joinBtn" class="btn">Join</button>
+      </div>
+      <p id="menuErr" class="err"></p>
+      <div class="help">
+        <b>Controls</b><br />
+        W/↑ accelerate · S/↓ brake · A/D or ←/→ steer<br />
+        SHIFT hold while turning = drift (release for mini-turbo)<br />
+        SPACE use item · R respawn on track · M mute
+      </div>
+    </div>
+  </div>
+
+  <!-- Lobby -->
+  <div id="lobby" class="screen panel-wrap hidden">
+    <div class="panel">
+      <h2>Room <span id="roomCode" class="code"></span></h2>
+      <div class="row">
+        <input id="shareLink" readonly />
+        <button id="copyBtn" class="btn">Copy link</button>
+      </div>
+      <ul id="playerList" class="plist"></ul>
+      <div id="hostOpts">
+        <div class="row opts">
+          <button data-mode="coop" class="btn toggle">Co-op vs Rivals</button>
+          <button data-mode="versus" class="btn toggle">Free-for-all</button>
+        </div>
+        <label class="chk"><input type="checkbox" id="fillBots" checked /> Fill empty grid slots with CPU racers</label>
+        <button id="startBtn" class="btn big">Start race!</button>
+      </div>
+      <p id="waitHost" class="muted">Waiting for the host to start…</p>
+      <p id="modeDesc" class="muted small"></p>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div id="lap">LAP <b>1</b>/3</div>
+    <div id="timer">TIME 0'00"00</div>
+    <div id="itemBox"><div id="itemIcon"></div></div>
+    <div id="place">1<sup>st</sup></div>
+    <div id="boardWrap"><ol id="board"></ol></div>
+    <canvas id="minimap" width="170" height="170"></canvas>
+    <div id="countdown"></div>
+    <div id="toast"></div>
+    <div id="spec" class="hidden">Spectating — you'll join the next race</div>
+  </div>
+
+  <!-- Touch controls -->
+  <div id="touch" class="hidden">
+    <div class="tleft"><button data-k="left">◀</button><button data-k="right">▶</button></div>
+    <div class="tright"><button data-k="drift">DRIFT</button><button data-k="item">ITEM</button><button data-k="down">BRAKE</button></div>
+  </div>
+
+  <!-- Results -->
+  <div id="results" class="screen panel-wrap hidden">
+    <div class="panel">
+      <h2 id="resTitle">Results</h2>
+      <div id="teamScore"></div>
+      <table id="resTable"></table>
+      <button id="againBtn" class="btn big">Back to lobby</button>
+      <p id="resWait" class="muted">Waiting for host…</p>
+    </div>
+  </div>
+
+  <script type="module" src="/game.js"></script>
+</body>
+</html>

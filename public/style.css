@@ -1,0 +1,76 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #6ec6ff; font-family: 'Nunito', system-ui, sans-serif; color: #fff; user-select: none; -webkit-user-select: none; }
+#c { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+.hidden { display: none !important; }
+
+.panel-wrap { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: radial-gradient(ellipse at center, rgba(10,20,60,.35), rgba(10,20,60,.75)); z-index: 10; }
+.panel { width: min(440px, 92vw); max-height: 92vh; overflow: auto; background: linear-gradient(160deg, #1d2b6b, #2a1458); border: 4px solid #ffd23f; border-radius: 22px; padding: 26px; box-shadow: 0 14px 0 #0006, 0 0 60px #ffd23f55; }
+.logo { font-family: 'Bungee', sans-serif; font-size: 52px; margin: 0; text-align: center; color: #ffd23f; text-shadow: 4px 4px 0 #e2362f, 8px 8px 0 #0006; letter-spacing: 1px; }
+.logo span { color: #4de1ff; margin-left: 8px; }
+.tag { text-align: center; margin: 4px 0 18px; opacity: .9; }
+h2 { font-family: 'Bungee', sans-serif; margin: 0 0 14px; text-align: center; color: #ffd23f; }
+label { display: block; font-weight: 800; margin: 10px 0 6px; }
+input { font: inherit; padding: 10px 12px; border-radius: 10px; border: 3px solid #0004; background: #fff; color: #222; width: 100%; outline: none; }
+input:focus { border-color: #4de1ff; }
+#codeIn { text-transform: uppercase; letter-spacing: 6px; text-align: center; font-weight: 800; }
+.row { display: flex; gap: 8px; margin: 10px 0; }
+.btn { font: 800 16px 'Nunito', sans-serif; border: none; border-radius: 12px; padding: 10px 16px; background: #4de1ff; color: #10204a; cursor: pointer; box-shadow: 0 4px 0 #1a8fb0; transition: transform .08s; white-space: nowrap; }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #1a8fb0; }
+.btn.big { display: block; width: 100%; font-family: 'Bungee', sans-serif; font-size: 22px; padding: 14px; margin-top: 14px; background: #ffd23f; box-shadow: 0 5px 0 #c08a00; }
+.btn.toggle { flex: 1; background: #ffffff22; color: #fff; box-shadow: 0 4px 0 #0004; }
+.btn.toggle.on { background: #ffd23f; color: #10204a; box-shadow: 0 4px 0 #c08a00; }
+.colors { display: flex; gap: 8px; flex-wrap: wrap; }
+.colors div { width: 36px; height: 36px; border-radius: 50%; border: 3px solid #fff4; cursor: pointer; }
+.colors div.sel { border-color: #fff; transform: scale(1.15); box-shadow: 0 0 12px #fff; }
+.err { color: #ff8a8a; min-height: 1em; font-weight: 800; }
+.help { font-size: 13px; opacity: .85; margin-top: 12px; line-height: 1.6; background: #0003; padding: 10px; border-radius: 10px; }
+.code { color: #4de1ff; letter-spacing: 4px; }
+.plist { list-style: none; padding: 0; margin: 12px 0; }
+.plist li { display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: #0003; border-radius: 10px; margin-bottom: 6px; font-weight: 800; }
+.plist .dot { width: 18px; height: 18px; border-radius: 50%; }
+.plist .host { margin-left: auto; font-size: 12px; background: #ffd23f; color: #222; padding: 2px 8px; border-radius: 8px; }
+.muted { opacity: .75; text-align: center; }
+.small { font-size: 13px; }
+.chk { font-weight: 600; display: flex; gap: 8px; align-items: center; }
+.chk input { width: auto; }
+
+#hud { position: fixed; inset: 0; pointer-events: none; z-index: 5; font-family: 'Bungee', sans-serif; text-shadow: 3px 3px 0 #000a; }
+#lap { position: absolute; top: 16px; left: 20px; font-size: 26px; color: #fff; }
+#lap b { color: #ffd23f; font-weight: normal; }
+#timer { position: absolute; top: 16px; right: 20px; font-size: 26px; color: #ffd23f; }
+#itemBox { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 78px; height: 78px; border: 4px solid #fff; border-radius: 14px; background: #0006; display: flex; align-items: center; justify-content: center; font-size: 44px; }
+#itemBox.rolling { animation: pulse .15s infinite alternate; }
+@keyframes pulse { to { border-color: #ffd23f; } }
+#place { position: absolute; bottom: 18px; left: 22px; font-size: 76px; color: #ffd23f; -webkit-text-stroke: 2px #a35a00; }
+#place sup { font-size: 32px; }
+#boardWrap { position: absolute; top: 70px; left: 16px; }
+#board { list-style: none; margin: 0; padding: 0; font-family: 'Nunito', system-ui, sans-serif; font-weight: 800; font-size: 14px; }
+#board li { display: flex; gap: 6px; align-items: center; background: #0005; margin-bottom: 3px; padding: 2px 8px 2px 4px; border-radius: 8px; min-width: 140px; }
+#board li.me { background: #ffd23fcc; color: #222; text-shadow: none; }
+#board .sw { width: 12px; height: 12px; border-radius: 3px; }
+#board .n { width: 16px; text-align: right; }
+#board .tm { margin-left: auto; font-size: 11px; opacity: .8; }
+#minimap { position: absolute; bottom: 16px; right: 16px; background: #0003; border-radius: 14px; }
+#countdown { position: absolute; top: 36%; width: 100%; text-align: center; font-size: 140px; color: #ffd23f; -webkit-text-stroke: 4px #a3000a; }
+#countdown.pop { animation: pop .5s ease-out; }
+@keyframes pop { from { transform: scale(2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+#toast { position: absolute; top: 24%; width: 100%; text-align: center; font-size: 38px; color: #fff; }
+#spec { position: absolute; bottom: 120px; width: 100%; text-align: center; font-size: 22px; }
+
+#touch { position: fixed; inset: auto 0 0 0; z-index: 6; display: flex; justify-content: space-between; padding: 12px; pointer-events: none; }
+#touch button { pointer-events: auto; font: 800 16px 'Nunito'; width: 78px; height: 78px; border-radius: 50%; border: 3px solid #fff8; background: #0005; color: #fff; margin: 4px; touch-action: none; }
+#touch .tright { display: flex; flex-direction: column-reverse; align-items: flex-end; }
+#touch .tleft { display: flex; align-items: flex-end; margin-bottom: 110px; }
+@media (pointer: coarse) {
+  #place { font-size: 52px; bottom: auto; top: 60px; left: auto; right: 20px; }
+  #minimap { bottom: auto; top: 140px; width: 110px; height: 110px; }
+  #boardWrap { display: none; }
+}
+
+#resTable { width: 100%; border-collapse: collapse; margin: 10px 0; font-weight: 800; }
+#resTable td { padding: 6px 8px; border-bottom: 1px solid #fff2; }
+#resTable tr.me td { color: #ffd23f; }
+#resTable .sw { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: middle; margin-right: 6px; }
+#teamScore { text-align: center; font-size: 18px; font-weight: 800; }
+#teamScore .big { font-family: 'Bungee'; font-size: 28px; color: #4de1ff; display: block; margin-bottom: 6px; }
